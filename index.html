@@ -77,7 +77,20 @@ function render(){
   const genre=document.createElement("p");
   genre.textContent=a.genre;
   const btn=document.createElement("button");
-  btn.textContent="▶ Watch Trailer"; btn.onclick=()=>window.open("https://www.google.com/search?q="+encodeURIComponent(a.name+" official streaming"),"_blank");
+    btn.textContent="▶ Watch Trailer"; btn.onclick=()=>{
+ const player=document.createElement("iframe");
+ player.width="100%";
+ player.height="250";
+ player.src="https://www.youtube-nocookie.com/embed/VIDEO_ID_HERE";
+ player.allowFullscreen=true;
+ player.style.border="0";
+ player.style.borderRadius="12px";
+ const old=document.getElementById("videoPlayer");
+ if(old) old.remove();
+ player.id="videoPlayer";
+ grid.before(player);
+ player.scrollIntoView({behavior:"smooth"});
+};
   card.append(poster,title,genre,btn);
   grid.appendChild(card);
  });
