@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AnimeVerse</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0c0b14;color:white;font-family:Arial,sans-serif}
+header{padding:20px;background:#171525;position:sticky;top:0;z-index:2}
+.logo{font-size:26px;font-weight:bold;color:#b79aff}
+.logo span{color:#ff6095}
+.tag{color:#b8b4ca;margin:8px 0 16px}
+input{width:100%;padding:13px;border-radius:10px;border:1px solid #403754;background:#242035;color:white;font-size:16px}
+main{padding:16px}
+h2{margin-top:12px}
+.hero{padding:24px 18px;border-radius:16px;background:linear-gradient(135deg,#4a207e,#a52d69);margin-bottom:24px}
+.hero h1{font-size:30px;margin:0 0 8px}
+.hero p{line-height:1.5}
+.badge{font-size:12px;background:#ffffff24;padding:7px 10px;border-radius:20px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{background:#191725;border-radius:12px;overflow:hidden;border:1px solid #2e293d}
+.poster{height:155px;display:flex;align-items:center;justify-content:center;font-size:55px;background:linear-gradient(145deg,#38205e,#c24a83)}
+.card h3{font-size:15px;margin:10px 10px 5px}
+.card p{font-size:12px;color:#b9b4c8;margin:5px 10px 12px}
+button{cursor:pointer;border:0;border-radius:8px;padding:10px;background:#a98aff;color:#140c25;font-weight:bold}
+.card button{margin:0 10px 12px;width:calc(100% - 20px)}
+.note{color:#aaa4bb;font-size:12px;line-height:1.5;margin-top:24px}
+footer{text-align:center;color:#938ba6;padding:24px;font-size:12px}
+.empty{padding:20px;color:#bbb}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Anime<span>Verse</span> ✦</div>
+  <p class="tag">Discover your next adventure.</p>
+  <input id="search" placeholder="Search anime..." aria-label="Search anime">
+</header>
+<main>
+  <section class="hero">
+    <span class="badge">YOUR ANIME WORLD</span>
+    <h1>Find your next favourite.</h1>
+    <p>Explore adventures, legendary heroes and unforgettable stories.</p>
+    <button onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">Explore anime ↓</button>
+  </section>
+  <h2 id="catalog">Popular Anime</h2>
+  <div class="grid" id="grid"></div>
+  <p class="note">AnimeVerse is an anime discovery demo. Watch using official, licensed streaming services. This demo does not host or stream episodes.</p>
+</main>
+<footer>Made with ♥ for anime fans</footer>
+<script>
+const anime=[
+ {name:"Naruto",genre:"Action • Adventure",emoji:"🍥"},
+ {name:"One Piece",genre:"Adventure • Fantasy",emoji:"🏴‍☠️"},
+ {name:"Demon Slayer",genre:"Action • Supernatural",emoji:"⚔️"},
+ {name:"My Hero Academia",genre:"Action • Superhero",emoji:"💥"},
+ {name:"Jujutsu Kaisen",genre:"Action • Fantasy",emoji:"👊"},
+ {name:"Attack on Titan",genre:"Action • Drama",emoji:"🛡️"},
+ {name:"Death Note",genre:"Mystery • Thriller",emoji:"📓"},
+ {name:"Spy x Family",genre:"Comedy • Family",emoji:"🕵️"}
+];
+const grid=document.getElementById("grid");
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const filtered=anime.filter(a=>(a.name+" "+a.genre).toLowerCase().includes(q));
+ grid.innerHTML="";
+ if(!filtered.length){grid.innerHTML='<p class="empty">No anime found. Try another search.</p>';return;}
+ filtered.forEach(a=>{
+  const card=document.createElement("article");
+  card.className="card";
+  const poster=document.createElement("div");
+  poster.className="poster";
+  poster.textContent=a.emoji;
+  const title=document.createElement("h3");
+  title.textContent=a.name;
+  const genre=document.createElement("p");
+  genre.textContent=a.genre;
+  const btn=document.createElement("button");
+  btn.textContent="Find where to watch";
+  btn.onclick=()=>window.open("https://www.google.com/search?q="+encodeURIComponent(a.name+" official streaming"),"_blank");
+  card.append(poster,title,genre,btn);
+  grid.appendChild(card);
+ });
+}
+document.getElementById("search").addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
