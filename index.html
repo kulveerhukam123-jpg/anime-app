@@ -48,6 +48,75 @@ footer{text-align:center;color:#938ba6;padding:24px;font-size:12px}
   <div class="grid" id="grid"></div>
   <p class="note">AnimeVerse is an anime discovery demo. Watch using official, licensed streaming services. This demo does not host or stream episodes.</p>
 </main>
+  <h2 id="catalog">Popular Anime</h2>
+  <div class="grid" id="grid"></div>
+
+  <p class="note">
+    AnimeVerse is an anime discovery demo.
+    Watch using official, licensed streaming services.
+  </p>
+</main>
+
+<!-- SUBSCRIPTION SECTION STARTS HERE -->
+
+<section id="subscriptions" style="padding:20px 16px">
+  <h2 style="text-align:center;color:#b79aff">
+    👑 AnimeVerse Premium
+  </h2>
+
+  <p style="text-align:center;color:#b8b4ca">
+    Choose your membership plan
+  </p>
+
+  <div style="background:#191725;border:1px solid #403754;
+  border-radius:14px;padding:18px;margin:16px 0">
+    <h3>⭐ Basic</h3>
+    <h2>₹359 / month</h2>
+    <p>Standard anime discovery</p>
+    <button onclick="selectPlan('Basic',359)">
+      Choose Basic
+    </button>
+  </div>
+
+  <div style="background:#191725;border:1px solid #a98aff;
+  border-radius:14px;padding:18px;margin:16px 0">
+    <h3>⚡ Pro</h3>
+    <h2>₹589 / month</h2>
+    <p>Ad-free viewing experience</p>
+    <button onclick="selectPlan('Pro',589)">
+      Choose Pro
+    </button>
+  </div>
+
+  <div style="background:#191725;border:2px solid #e8c45b;
+  border-radius:14px;padding:18px;margin:16px 0">
+    <h3>👑 Ultra</h3>
+    <h2>₹899 / month</h2>
+    <p>High video quality and ad-free viewing</p>
+    <button onclick="selectPlan('Ultra',899)">
+      Choose Ultra
+    </button>
+  </div>
+
+  <p id="planMessage" style="text-align:center;color:#b79aff">
+    Select a plan to get started.
+  </p>
+</section>
+
+<script>
+function selectPlan(name, price) {
+  document.getElementById("planMessage").textContent =
+    name + " selected: ₹" + price +
+    "/month. Payments are not connected yet.";
+}
+</script>
+
+<!-- SUBSCRIPTION SECTION ENDS HERE -->
+
+<footer>Made with ♥ for anime fans</footer>
+</body>
+</html>
+
 <footer>Made with ♥ for anime fans</footer>
 <script>
 const anime=[
